@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Students";
+}
+
+<br/>
+<h2>Student List</h2>
+
+@* Normal and Themeroller *@
+@*<table id="studentsTable" class="display">*@
+@* Sementic UI *@
+<table id="studentsTable" class="ui celled table">
+@* Bootstrap *@
+@*<table id="studentsTable" class="table table-bordered table-striped">*@
+    <thead>
+        <tr>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>FatherName</th>
+            <th>MotherName</th>
+            <th>ClassID</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>FatherName</th>
+            <th>MotherName</th>
+            <th>ClassID</th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+@section stylesheet
+{
+    @* Normal dataTable *@
+    @*<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+
+    <!-- jQuery ThemeRoller -->
+    @*<link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.jqueryui.min.css" rel="stylesheet" />*@
+
+    <!-- Semantic UI -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.15/css/dataTables.semanticui.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap 4 -->
+    @*<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css" rel="stylesheet" />*@
+
+}
+
+@section scripts
+{
+    @* Normal DataTable *@
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    @* jQuery ThemeRoller*@
+    @*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.jqueryui.min.js"></script>*@
+
+    @* Semantic UI*@
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.semanticui.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+
+    @* Bootstrap 4*@
+    @*<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" />
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
+
+    <script>
+        $(document).ready(function () {
+
+            $("#studentsTable").DataTable(
+                {
+                    "ajax": {
+                        "url": "/Student/GetStudentList",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+
+                    "columnDefs":
+                    [{
+                        "targets": [1],
+                        "orderable": false
+                        },
+                        {
+                            "targets": [2],
+                            "orderable": false
+                            },
+                        {
+                            "targets": [3],
+                            "orderable": false
+                            },
+                        {
+                            "targets": [4],
+                            "orderable": false
+                            },
+                        {
+                            "targets": [5],
+                            "orderable": false,
+                            "searchable": false,
+                            "visible": false
+                            }],
+
+                        "columns": [
+                        { "data": "RollNo" },
+                        { "data": "Name" },
+                        { "data": "Address" },
+                        { "data": "FatherName" },
+                        { "data": "MotherName" },
+                        { "data": "ClassID" },
+                        {
+                            "render": function (data, type, full, meta)
+                                { return '<a class="btn btn-info" href="/Demo/Edit/' + full.ID + '">Edit</a>'; }
+                        }
+
+                    ]
+
+                });
+
+        });
+
+    </script>
+}
+
