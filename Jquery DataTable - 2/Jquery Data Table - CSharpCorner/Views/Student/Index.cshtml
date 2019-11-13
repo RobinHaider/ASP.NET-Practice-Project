@@ -19,7 +19,6 @@
             <th>Address</th>
             <th>FatherName</th>
             <th>MotherName</th>
-            <th>ClassID</th>
             <th></th>
         </tr>
     </thead>
@@ -30,7 +29,6 @@
             <th>Address</th>
             <th>FatherName</th>
             <th>MotherName</th>
-            <th>ClassID</th>
             <th></th>
         </tr>
     </tfoot>
@@ -111,8 +109,7 @@
                         { "data": "Address" },
                         { "data": "FatherName" },
                         { "data": "MotherName" },
-                        { "data": "ClassID" },
-                        {
+                            {
                             "render": function (data, type, full, meta)
                                 { return '<a class="btn btn-info" href="/Demo/Edit/' + full.ID + '">Edit</a>'; }
                         }
